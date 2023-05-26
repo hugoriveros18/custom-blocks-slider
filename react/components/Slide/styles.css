@@ -1,0 +1,37 @@
+.slide__image {
+  max-width: 100%;
+  transform: scale(0.7);
+  cursor: pointer;
+}
+
+.slide__imageActive {
+  transform: scale(0.95);
+}
+
+@media screen and (max-width: 640px) {
+  .picture__globalContainer {
+    position: relative;
+  }
+
+  .slide__linkRight {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .slide__linkLeft {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .slide__imagePhone {
+    width: 65%;
+    transform: scale(1);
+  }
+}
+

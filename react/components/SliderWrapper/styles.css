@@ -1,0 +1,22 @@
+.sliderWrapper__globalContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderWrapper__internalContainer {
+  display: flex;
+  width: 100%;
+  transition: all 500ms;
+}
+
+.sliderInTransition {
+  transition: none;
+}
+
+/* @media screen and (max-width: 640px) {
+  .sliderWrapper__internalContainer {
+    justify-content: center;
+  }
+} */
+
