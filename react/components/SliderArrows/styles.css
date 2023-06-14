@@ -9,6 +9,19 @@
   width          : 50px;
 }
 
+
+
+.leftArrow__globalContainer img:focus,
+.rightArrow__globalContainer img:focus {
+  outline: none;
+  background-color: transparent !important;
+}
+
+.leftArrow__globalContainer img,
+.rightArrow__globalContainer img {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 .leftArrow__globalContainer {
   left: -35px;
 }

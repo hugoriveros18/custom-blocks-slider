@@ -2,6 +2,7 @@
   max-width: 100%;
   transform: scale(0.7);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .slide__imageActive {
@@ -32,6 +33,7 @@
   .slide__imagePhone {
     width: 65%;
     transform: scale(1);
+    -webkit-tap-highlight-color: transparent !important;
   }
 }
 

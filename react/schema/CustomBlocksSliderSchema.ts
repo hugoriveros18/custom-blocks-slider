@@ -46,6 +46,22 @@ export const CustomBlocksSliderSchema = {
           type: "boolean",
           default: true
         },
+        navigationArrows: {
+          title: "Flechas de Navegacion",
+          type: "object",
+          properties: {
+            leftArrow: {
+              title: "Flecha Izquierda",
+              type: "string",
+              default: "https://panamericana.vteximg.com.br/arquivos/arrow-1-asi-quiero-new-version-mayo-2023-40.svg"
+            },
+            rightArrow: {
+              title: "Flecha Derecha",
+              type: "string",
+              default: "https://panamericana.vteximg.com.br/arquivos/arrow-2-asi-quiero-new-version-mayo-2023-40-41.svg"
+            }
+          }
+        },
         itemsPerPage: {
           title: "Elementos por pantalla",
           type: "object",

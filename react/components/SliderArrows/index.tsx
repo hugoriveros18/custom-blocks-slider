@@ -9,7 +9,7 @@ const CSS_HANDLES = [
   'rightArrow__icon',
 ]
 
-export function LeftArrow({handleTrigger}:SliderArrowsProps) {
+export function LeftArrow({arrowIcon, handleTrigger}:SliderArrowsProps) {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
@@ -18,7 +18,7 @@ export function LeftArrow({handleTrigger}:SliderArrowsProps) {
   return (
     <div className={handles.leftArrow__globalContainer}>
       <img
-        src="https://panamericana.vteximg.com.br/arquivos/arrow-1-asi-quiero-new-version-mayo-2023-40.svg"
+        src={arrowIcon ? arrowIcon : "https://panamericana.vteximg.com.br/arquivos/arrow-1-asi-quiero-new-version-mayo-2023-40.svg"}
         className={handles.leftArrow__icon}
         onClick={handleTrigger}
         />
@@ -26,7 +26,7 @@ export function LeftArrow({handleTrigger}:SliderArrowsProps) {
   )
 }
 
-export function RightArrow({handleTrigger}:SliderArrowsProps) {
+export function RightArrow({arrowIcon, handleTrigger}:SliderArrowsProps) {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
@@ -35,7 +35,7 @@ export function RightArrow({handleTrigger}:SliderArrowsProps) {
   return (
     <div className={handles.rightArrow__globalContainer}>
       <img
-        src="https://panamericana.vteximg.com.br/arquivos/arrow-2-asi-quiero-new-version-mayo-2023-40-41.svg"
+        src={arrowIcon ? arrowIcon : "https://panamericana.vteximg.com.br/arquivos/arrow-2-asi-quiero-new-version-mayo-2023-40-41.svg"}
         className={handles.rightArrow__icon}
         onClick={handleTrigger}
       />

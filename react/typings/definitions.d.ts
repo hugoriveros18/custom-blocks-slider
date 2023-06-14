@@ -12,6 +12,7 @@ type Banner = {
 
 type ConfiguracionSlider = {
   showNavigationArrows: boolean
+  navigationArrows?: NavigationArrows
   itemsPerPage: ItemsPerPage
 }
 
@@ -19,6 +20,11 @@ type ItemsPerPage = {
   desktop: number
   tablet: number
   phone: number
+}
+
+type NavigationArrows = {
+  leftArrow: string
+  rightArrow: string
 }
 
 type useBannersValidationProps = {
@@ -38,6 +44,7 @@ type useSlideStateProps = {
 }
 
 type SliderArrowsProps = {
+  arrowIcon: string | undefined
   handleTrigger: () => void
 }
 

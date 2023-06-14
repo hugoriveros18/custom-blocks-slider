@@ -70,8 +70,14 @@ export default function SliderWrapper({banners, configuracionSlider}:CustomBlock
         {
           configuracionSlider.showNavigationArrows &&
           <>
-            <LeftArrow handleTrigger={handlePrevious}/>
-            <RightArrow handleTrigger={handleNext}/>
+            <LeftArrow
+              arrowIcon={configuracionSlider.navigationArrows?.leftArrow}
+              handleTrigger={handlePrevious}
+            />
+            <RightArrow
+              arrowIcon={configuracionSlider.navigationArrows?.rightArrow}
+              handleTrigger={handleNext}
+            />
           </>
         }
     </div>
