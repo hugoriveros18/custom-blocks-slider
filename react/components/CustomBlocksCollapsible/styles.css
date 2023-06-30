@@ -1,0 +1,275 @@
+.collapsible__generalContainer {
+  display   : flex;
+  gap       : 30px;
+  width     : 100%;
+  padding   : 0;
+  margin    : 0;
+  list-style: none;
+}
+
+.collapsible__columnContainer {
+  display        : flex;
+  flex           : 1;
+  flex-direction : column-reverse;
+  justify-content: space-between;
+  gap            : 15px;
+  height         : auto;
+}
+
+.collapsible__itemContainer {
+  position: relative;
+  display : flex;
+  flex    : 1;
+  width   : 100%;
+}
+
+.collapsible__infoContainer {
+  display       : flex;
+  flex-direction: column;
+  position      : absolute;
+  width         : 80%;
+  left          : 50%;
+  transform     : translateX(-50%);
+}
+
+.collapsible__subitemsListContainer {
+  display                   : flex;
+  flex-direction            : column;
+  width                     : 89%;
+  margin                    : -34px auto 0;
+  overflow                  : hidden;
+  border-bottom-left-radius : 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow                : 5px 0 5px -5px rgba(0, 0, 0, 0.5),
+    -5px 0 5px -5px rgba(0, 0, 0, 0.5),
+    0 5px 5px -5px rgba(0, 0, 0, 0.5);
+  list-style: none;
+}
+
+
+.collapsible__subitemsListContainerActive {
+  animation: sublist-active 300ms forwards;
+}
+
+.collapsible__subitemsListContainerInactive {
+  animation: sublist-inactive 300ms forwards;
+}
+
+.collapsible__subitemsListContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.collapsible__subitemContainer {
+  position   : relative;
+  padding    : 2px 20px 2px 34px;
+  overflow   : hidden;
+  line-height: 1;
+}
+
+.collapsible__subitemContainerLast {
+  padding-bottom: 15px;
+}
+
+.collapsible__subitemsListContainerInactive>.collapsible__subitemContainer::before {
+  display: none;
+}
+
+.collapsible__subitemContainer::before {
+  position       : absolute;
+  top            : 0;
+  left           : 17px;
+  content        : "\25AA";
+  display        : inline-block;
+  font-size      : 28px;
+  height         : 100%;
+  color          : #021642;
+  list-style-type: square;
+}
+
+.collapsible__subitemLink {
+  display        : block;
+  width          : 100%;
+  font-size      : 24px;
+  font-weight    : 800;
+  font-family    : 'Lato';
+  color          : #021642;
+  text-decoration: none;
+  line-height    : 1;
+  transition     : all 200ms;
+}
+
+.collapsible__subitemLink:hover {
+  transform: translateX(5px);
+}
+
+.collapsible__imageContainer,
+.collapsible__image {
+  width : 100%;
+  height: 100%;
+}
+
+.collapsible__descubreMasButton,
+.collapsible__descubreMasButtonContainer {
+  width: 100%;
+}
+
+
+
+@keyframes sublist-active {
+  0% {
+    padding   : 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 22px 0 0;
+    max-height: 1000px;
+  }
+}
+
+@keyframes sublist-inactive {
+  0% {
+    padding   : 22px 0 0;
+    max-height: 1000px;
+  }
+
+  90% {
+    padding   : 22px 0 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 0;
+    max-height: 0;
+  }
+}
+
+
+@keyframes sublist-active-lg {
+  0% {
+    padding   : 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 26px 0 0;
+    max-height: 1000px;
+  }
+}
+
+@keyframes sublist-inactive-lg {
+  0% {
+    padding   : 26px 0 0;
+    max-height: 1000px;
+  }
+
+  90% {
+    padding   : 26px 0 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 0;
+    max-height: 0;
+  }
+}
+
+@keyframes sublist-active-m {
+  0% {
+    padding   : 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 18px 0 0;
+    max-height: 1000px;
+  }
+}
+
+@keyframes sublist-inactive-m {
+  0% {
+    padding   : 18px 0 0;
+    max-height: 1000px;
+  }
+
+  90% {
+    padding   : 18px 0 0;
+    max-height: 0;
+  }
+
+  100% {
+    padding   : 0;
+    max-height: 0;
+  }
+}
+
+@media screen and (max-width: 1360px) {
+
+  .collapsible__subitemLink {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .collapsible__subitemContainer {
+    padding: 3px 10px 3px 30px;
+  }
+
+  .collapsible__subitemContainer::before {
+    left: 16px;
+  }
+
+  .collapsible__subitemContainerLast {
+    padding-bottom: 15px;
+  }
+
+  .collapsible__subitemLink {
+    font-size: 16px;
+  }
+
+  .collapsible__subitemsListContainerActive {
+    animation-name: sublist-active-lg;
+  }
+
+  .collapsible__subitemsListContainerInactive {
+    animation-name: sublist-inactive-lg;
+  }
+}
+
+@media screen and (max-width: 640px) {
+
+  .collapsible__generalContainer,
+  .collapsible__columnContainer {
+    gap: 8px;
+  }
+
+  .collapsible__subitemContainer {
+    padding: 2px 6px 2px 12px;
+  }
+
+  .collapsible__subitemLink {
+    font-size: 9px;
+  }
+
+  .collapsible__subitemContainerLast {
+    padding-bottom: 10px;
+  }
+
+  .collapsible__subitemsListContainer {
+    margin: -22px auto 0;
+  }
+
+  .collapsible__subitemsListContainerActive {
+    animation-name: sublist-active-m;
+  }
+
+  .collapsible__subitemsListContainerInactive {
+    animation-name: sublist-inactive-m;
+  }
+
+  .collapsible__subitemContainer::before {
+    left     : 5px;
+    font-size: 13px;
+  }
+}

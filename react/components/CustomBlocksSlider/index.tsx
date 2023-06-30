@@ -2,8 +2,8 @@ import React from "react";
 import { useCssHandles } from 'vtex.css-handles';
 import useBannersValidation from "../../hooks/useBannersValidation";
 import SliderWrapper from "../SliderWrapper";
-import './styles.css'
 import { CustomBlocksSliderSchema } from "../../schema/CustomBlocksSliderSchema";
+import './styles.css'
 
 const CSS_HANDLES = [
   'slider__globalContainer'
@@ -13,8 +13,6 @@ export default function CustomBlocksSlider({
   banners,
   configuracionSlider
 }:CustomBlocksSliderProps) {
-
-  //INPUT EXAMPLE
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);

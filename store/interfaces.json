@@ -2,6 +2,12 @@
   "custom-blocks-slider": {
     "component": "CustomBlocksSlider"
   },
+  "custom-blocks-accordion": {
+    "component": "CustomBlocksAccordion"
+  },
+  "custom-blocks-collapsible": {
+    "component": "CustomBlocksCollapsible"
+  },
   "html-scroll": {
     "component": "HTMLScroll"
   }

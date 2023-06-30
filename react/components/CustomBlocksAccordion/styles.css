@@ -1,0 +1,105 @@
+.accordion__generalContainer {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.accordion__listContainer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+}
+
+.accordion__listItem {
+  position: relative;
+  box-shadow: -2px 0px 8px #999;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+}
+
+.listItem__title {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.aplicarAnimacion {
+  animation: nameAnimation .6s ease-in-out forwards;
+}
+
+.listItem__title h4 {
+  font-size: 28px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+}
+
+.listItem__link {
+  display: block;
+  transition: all .5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.listItem__image {
+  transition: all .5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes nameAnimation {
+  0% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .listItem__title h4 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .accordion__listContainer {
+    gap: 6px;
+  }
+
+  .accordion__listItem {
+    box-shadow: -2px 0px 2px #999;
+  }
+
+  .listItem__title h4 {
+    font-size: 14px;
+  }
+}
+
+
+
