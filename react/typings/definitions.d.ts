@@ -68,6 +68,29 @@ type AccordionItem = {
 type CustomBlocksAccordionProps = {
   colorTexto: string
   colorFondo: string
+  widthActivoDesktop: number
+  widthActivoMobile: number
+  mobileVertical: boolean
+  listaElementos: AccordionItem[]
+}
+
+type AccordionDesktopProps = {
+  colorTexto: string
+  colorFondo: string
+  widthActivoDesktop: number
+  listaElementos: AccordionItem[]
+}
+
+type AccordionMobileProps = {
+  colorTexto: string
+  colorFondo: string
+  widthActivoMobile: number
+  listaElementos: AccordionItem[]
+}
+
+type AccordionMobileVerticalProps = {
+  colorTexto: string
+  colorFondo: string
   listaElementos: AccordionItem[]
 }
 

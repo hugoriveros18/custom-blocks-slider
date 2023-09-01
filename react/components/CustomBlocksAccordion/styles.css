@@ -101,5 +101,86 @@
   }
 }
 
+/* VERTICAL ACCORDION */
 
+.accordionVertical__generalContainer {
+  width: 100%;
+  padding: 0 !important;
+}
 
+.accordionVertical__listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+}
+
+.accordionVertical__listItem {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: all .6s ease-in-out;
+}
+
+.listItemVertical__title {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.listItemVertical__title h4 {
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.listItemVertical__link {
+  display: block;
+  transition: all .5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.listItemVertical__image {
+  display: block;
+  transition: all .5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.aplicarAnimacionVertical {
+  animation: nameAnimationVertical .6s ease-in-out forwards;
+}
+
+@keyframes nameAnimationVertical {
+  0% {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}

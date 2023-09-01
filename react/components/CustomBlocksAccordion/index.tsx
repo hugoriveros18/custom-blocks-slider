@@ -12,7 +12,14 @@ const CSS_HANDLES = [
   'listItem__title',
   'listItem__link',
   'listItem__image',
-  'aplicarAnimacion'
+  'aplicarAnimacion',
+  'accordionVertical__generalContainer',
+  'accordionVertical__listContainer',
+  'accordionVertical__listItem',
+  'listItemVertical__title',
+  'listItemVertical__link',
+  'listItemVertical__image',
+  'aplicarAnimacionVertical'
 ]
 
 const defaultInputValue:AccordionItem[] = [
@@ -51,30 +58,45 @@ const defaultInputValue:AccordionItem[] = [
 export default function CustomBlocksAccordion({
   colorTexto = '#1d1d1b',
   colorFondo = '#bfcad9',
+  widthActivoDesktop = 60,
+  widthActivoMobile = 68,
+  mobileVertical = false,
   listaElementos = defaultInputValue
 }:CustomBlocksAccordionProps) {
 
   //DEVICE DETECTION
-  const { isMobile } = useDevice();
+  const { device } = useDevice();
 
   //JSX
-  if(isMobile) {
-    return (
-        <AccordionMobile
+  if(device === 'phone') {
+    if(mobileVertical) {
+      return (
+        <AccordionMobileVertical
           listaElementos={listaElementos}
-          colorTexto={colorTexto}
           colorFondo={colorFondo}
+          colorTexto={colorTexto}
         />
       )
     }
 
     return (
-      <AccordionDesktop
+      <AccordionMobile
         listaElementos={listaElementos}
         colorTexto={colorTexto}
         colorFondo={colorFondo}
+        widthActivoMobile={widthActivoMobile}
       />
     )
+  }
+
+  return (
+    <AccordionDesktop
+      listaElementos={listaElementos}
+      colorTexto={colorTexto}
+      colorFondo={colorFondo}
+      widthActivoDesktop={widthActivoDesktop}
+    />
+  )
 }
 
 CustomBlocksAccordion.schema = CustomBlocksAccordionSchema;
@@ -83,17 +105,22 @@ CustomBlocksAccordion.schema = CustomBlocksAccordionSchema;
 function AccordionDesktop({
   colorTexto,
   colorFondo,
+  widthActivoDesktop,
   listaElementos
-}:CustomBlocksAccordionProps) {
+}:AccordionDesktopProps) {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
+
+  //DEVICE DETECTION
+  const { device } = useDevice();
 
   //REFERENCES
   const listContainerRef = useRef<any>(null);
 
   //STATES
   const [elementoActivo, setElementoActivo] = useState<number>(Math.floor(listaElementos.length / 2));
+  const [originalHeight, setOriginalHeight] = useState<boolean>(true);
   const [windowWidth, setWindowWidth] = useState<number>(0);
   windowWidth
 
@@ -102,7 +129,6 @@ function AccordionDesktop({
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     }
-
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -112,12 +138,17 @@ function AccordionDesktop({
 
   //VARIABLES
   const widthElemento = (index:number) => {
-    return index === elementoActivo ? 60 : Math.floor(40 / (listaElementos.length - 1))
+    return index === elementoActivo ? widthActivoDesktop : Math.floor((100 - widthActivoDesktop) / (listaElementos.length - 1))
   }
 
   const heightElemento = (index:number) => {
+
+    if(originalHeight) {
+      return 'auto';
+    }
+
     if(index === elementoActivo) {
-      return 'auto'
+      return 'auto';
     }
 
     if(listContainerRef.current) {
@@ -125,6 +156,24 @@ function AccordionDesktop({
     }
 
     return 'auto'
+  }
+
+  const handleMouseEnter = (index: number) => {
+    if(device === 'desktop') {
+      setElementoActivo(index)
+      if(originalHeight) {
+        setOriginalHeight(false);
+      }
+    }
+  }
+
+  const handleClick = (index:number) => {
+    if(device === 'tablet') {
+      setElementoActivo(index)
+      if(originalHeight) {
+        setOriginalHeight(false);
+      }
+    }
   }
 
   //JSX
@@ -140,7 +189,8 @@ function AccordionDesktop({
               <li
                 key={index}
                 className={handles.accordion__listItem}
-                onMouseEnter={() => setElementoActivo(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onClick={() => handleClick(index)}
                 style={{
                   width: `${widthElemento(index)}%`,
                   height: `${heightElemento(index)}`
@@ -166,10 +216,6 @@ function AccordionDesktop({
                   style={{
                     transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
                   }}
-                  // style={{
-                  //   width: index === elementoActivo ? '100%' : '0%',
-                  //   height: index === elementoActivo ? '100%' : '0%'
-                  // }}
                 >
                   <img
                     alt={item.titulo}
@@ -178,10 +224,6 @@ function AccordionDesktop({
                     style={{
                       transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
                     }}
-                    // style={{
-                    //   width: index === elementoActivo ? '100%' : '0%',
-                    //   height: index === elementoActivo ? '100%' : '0%'
-                    // }}
                   />
                 </Link>
               </li>
@@ -196,8 +238,9 @@ function AccordionDesktop({
 function AccordionMobile({
   colorTexto,
   colorFondo,
+  widthActivoMobile,
   listaElementos
-}:CustomBlocksAccordionProps) {
+}:AccordionMobileProps) {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
@@ -225,7 +268,7 @@ function AccordionMobile({
 
   //VARIABLES
   const widthElemento = (index:number) => {
-    return index === elementoActivo ? 68 : Math.floor(32 / (listaElementos.length - 1))
+    return index === elementoActivo ? widthActivoMobile : Math.floor((100 - widthActivoMobile) / (listaElementos.length - 1))
   }
 
   const heightElemento = (index:number) => {
@@ -279,10 +322,6 @@ function AccordionMobile({
                   style={{
                     transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
                   }}
-                  // style={{
-                  //   width: index === elementoActivo ? '100%' : '0%',
-                  //   height: index === elementoActivo ? '100%' : '0%'
-                  // }}
                 >
                   <img
                     alt={item.titulo}
@@ -291,10 +330,6 @@ function AccordionMobile({
                     style={{
                       transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
                     }}
-                    // style={{
-                    //   width: index === elementoActivo ? '100%' : '0%',
-                    //   height: index === elementoActivo ? '100%' : '0%'
-                    // }}
                   />
                 </Link>
               </li>
@@ -304,6 +339,83 @@ function AccordionMobile({
       </ul>
     </div>
   )
+}
+
+
+function AccordionMobileVertical({
+  listaElementos,
+  colorFondo,
+  colorTexto
+}:AccordionMobileVerticalProps) {
+
+  //CSS HANDLES
+  const handles = useCssHandles(CSS_HANDLES);
+
+  //STATES
+  const [elementoActivo, setElementoActivo] = useState<number>(Math.floor(listaElementos.length / 2));
+
+  //METHODS
+  const heightElemento = (index:number) => {
+    if(index === elementoActivo) {
+      return 'none'
+    }
+
+    return '30px'
+  }
+
+  //JSX
+  return (
+    <div className={handles.accordionVertical__generalContainer}>
+      <ul className={handles.accordionVertical__listContainer}>
+        {
+          listaElementos.map((item, index) => {
+            return (
+              <li
+                key={index}
+                className={handles.accordionVertical__listItem}
+                onClick={() => setElementoActivo(index)}
+                style={{
+                  maxHeight: heightElemento(index)
+                }}
+              >
+                <div
+                  className={`${handles.listItemVertical__title} ${index === elementoActivo ? handles.aplicarAnimacionVertical : undefined}`}
+                  style={{
+                    backgroundColor: colorFondo
+                  }}
+                >
+                  <h4
+                    style={{
+                      color: colorTexto
+                    }}
+                  >
+                    {item.titulo}
+                  </h4>
+                </div>
+                <Link
+                  to={item.slug}
+                  className={handles.listItemVertical__link}
+                  style={{
+                    transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
+                  }}
+                >
+                  <img
+                    alt={item.titulo}
+                    src={item.imagenMobile}
+                    className={handles.listItemVertical__image}
+                    style={{
+                      transform: index === elementoActivo ? 'scale(1, 1)' : 'scale(0, 0)'
+                    }}
+                  />
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </div>
+  )
+
 }
 
 
